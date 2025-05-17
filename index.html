@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poorani | Front-End Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Fira+Code&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <style>
+    /* General Reset and Fonts */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0f0f2a;
+      color: #c8c8c8;
+      font-family: 'Share Tech Mono', monospace;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #00fff7;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ff00ff;
+    }
+
+    header {
+      background: #121224;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      box-shadow: 0 2px 10px #00fff7aa;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.8rem;
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
+      font-weight: 700;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #ff00ff;
+      transition: width 0.3s ease;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Fira Code', monospace;
+      color: #ff00ff;
+      text-shadow: 0 0 12px #ff00ff;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      border-bottom: 2px solid #ff00ff;
+      padding-bottom: 6px;
+      max-width: max-content;
+      margin-bottom: 1.8rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .highlight {
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #88f7f7;
+      font-weight: 600;
+    }
+
+    .intro {
+      max-width: 700px;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #aaaaff;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ff00ff;
+      color: #0f0f2a;
+      font-weight: 700;
+      padding: 0.7rem 1.6rem;
+      border-radius: 30px;
+      box-shadow: 0 0 15px #ff00ffaa;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #00fff7;
+      box-shadow: 0 0 20px #00fff7;
+      color: #121224;
+    }
+
+    /* About Section */
+    #about p {
+      font-size: 1.1rem;
+      max-width: 720px;
+      color: #bbb;
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+
+    /* Skills */
+    .skill-list {
+      list-style-type: none;
+      max-width: 720px;
+    }
+
+    .skill-list li {
+      background: #121224;
+      margin-bottom: 12px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00fff7aa;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      color: #c8c8c8;
+      transition: background 0.3s ease;
+    }
+
+    .skill-list li:hover {
+      background: #ff00ff22;
+      box-shadow: 0 0 15px #ff00ffcc;
+    }
+
+    .skill-list strong {
+      color: #ff00ff;
+      text-shadow: 0 0 6px #ff00ff;
+    }
+
+    /* Projects */
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      max-width: 900px;
+    }
+
+    .project-card {
+      background: #121224;
+      box-shadow: 0 0 15px #00fff7;
+      border-radius: 12px;
+      padding: 20px 25px;
+      flex: 1 1 280px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #c8c8c8;
+      font-family: 'Fira Code', monospace;
+      cursor: default;
+    }
+
+    .project-card h3 {
+      color: #ff00ff;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      text-shadow: 0 0 8px #ff00ff;
+    }
+
+    .project-card p {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: #bbb;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    /* Contact */
+    #contact p, #contact a {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #ccc;
+    }
+
+    #contact a:hover {
+      color: #ff00ff;
+    }
+
+    /* Footer */
+    footer {
+      background: #121224;
+      text-align: center;
+      padding: 1.4rem 1rem;
+      font-family: 'Fira Code', monospace;
+      color: #6666cc;
+      letter-spacing: 0.05em;
+      box-shadow: inset 0 1px 8px #00fff7cc;
+    }
+
+    footer .highlight {
+      color: #ff00ff;
+      text-shadow: 0 0 6px #ff00ff;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav a {
+        margin-left: 1rem;
+      }
+      .projects-container {
+        flex-direction: column;
+      }
+      .project-card {
+        flex: none;
+        width: 100%;
+      }
+      main {
+        padding: 2rem 1rem 3rem;
+      }
+      header {
+        padding: 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">❖ Poorani</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section" data-aos="fade-up">
+      <h1>Hi, I'm <span class="highlight">Poorani</span></h1>
+      <p class="subtitle">
+        A passionate front-end developer and 3rd-year Computer Science & Business Systems student
+        at Rajalakshmi Institute of Technology, Chennai.
+      </p>
+      <p class="intro">
+       I am a passionate front-end developer specializing in creating dynamic, responsive, and user-centric web applications.
+With expertise in HTML5, CSS3, JavaScript, and modern frameworks, I build scalable and performant digital solutions that enhance user engagement and accessibility.
+Driven by innovation and attention to detail, I thrive on transforming complex problems into elegant code, ensuring seamless functionality and visually striking designs.
+Committed to continuous learning and collaboration, I aim to deliver impactful products that align with both business goals and user needs.
+
+
+      </p>
+      <a href="#contact" class="btn">Let's Connect</a>
+    </section>
+
+    <section id="about" class="section" data-aos="fade-right">
+      <h2>About Me</h2>
+      <p>
+        I am currently pursuing a Bachelor’s degree in Computer Science & Business Systems at Rajalakshmi Institute of Technology, Chennai.  
+        With a focus on front-end development, I specialize in creating engaging, responsive websites that blend clean, efficient code with intuitive and elegant designs.  
+        I am committed to following industry best practices to deliver solutions that effectively meet both user needs and business goals.  
+        Known for being meticulous and adaptable, I thrive on continuous learning and problem-solving, always seeking new challenges to enhance my technical skills and broaden my expertise.
+      </p>
+    </section>
+
+    <section id="skills" class="section" data-aos="fade-up">
+      <h2>Skills</h2>
+      <ul class="skill-list">
+        <li><strong>HTML5 & CSS3</strong>: Crafting pixel-perfect, responsive layouts.</li>
+        <li><strong>JavaScript (ES6+)</strong>: Writing clean, efficient, and modular code.</li>
+        <li><strong>ReactJS</strong>: Building dynamic single-page applications with reusable components.</li>
+        <li><strong>Version Control (Git & GitHub)</strong>: Collaborating and managing projects with precision.</li>
+        <li><strong>UI/UX Basics</strong>: Creating user-friendly designs with tools like Figma and Adobe XD.</li>
+        <li><strong>Problem Solving</strong>: Debugging, optimizing, and improving code performance continuously.</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="section" data-aos="zoom-in">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>An animated and responsive personal website showcasing my skills and projects with smooth interactions and clean design.</p>
+        </div>
+        <div class="project-card">
+          <h3>Hospital Booking App</h3>
+          <p>User-friendly form UI with validation, smooth animations, and clear UX to simplify hospital appointment bookings.</p>
+        </div>
+        <div class="project-card">
+          <h3>Product Landing Page</h3>
+          <p>Clean and modern design focused on conversions, fully responsive with call-to-action buttons optimized for all devices.</p>
+        </div>
+      </div>
+      <p>
+        Each project represents a step forward in my journey to becoming a skilled front-end developer. I focus on maintainable code, intuitive interfaces, and polished user experiences.
+      </p>
+    </section>
+
+    <section id="contact" class="section" data-aos="fade-up">
+      <h2>Contact</h2>
+     
+      <p>📧 Email: <a href="pooranibalakrishnan2023@gmail.com">pooranibalakrishnan2023@gmail.com</a></p>
+      <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/poorani-bala?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">https://www.linkedin.com/in/poorani-bala</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Poorani </p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: true,
+    });
+  </script>
+</body>
+</html>
